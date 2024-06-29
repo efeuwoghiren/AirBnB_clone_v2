@@ -89,7 +89,7 @@ class HBNBCommand(cmd.Cmd):
     def postcmd(self, stop, line):
         """Prints if isatty is false"""
         if not sys.__stdin__.isatty():
-            print('(hbnb) ', end='')
+            print('(hbnb) ', '')
         return stop
 
     def do_quit(self, command):
@@ -131,14 +131,14 @@ class HBNBCommand(cmd.Cmd):
         new_instance = eval(class_name)()
 
         for i in range(1, len(all_list)):
-            key, value = turple(all_list[i].split("="))
+            key, value = tuple(all_list[i].split("="))
             if value.startswith('"'):
                 value = value.strip('"').replace("_", " ")
             else:
                 try:
                     value = eval(value)
                 except Exception:
-                    print(f"** couldnt evaluate {value}")
+                    print(" couldnt evaluate {value}")
                     pass
                     if hasattr(new_instance, key):
                         setattr(new_instance, key, value)
@@ -293,8 +293,8 @@ class HBNBCommand(cmd.Cmd):
                 args.append(k)
                 args.append(v)
         else:  # isolate args
-            args = args[2]
-            if args and args[0] is '\"':  # check for quoted arg
+            args == args[2]
+            if args and args[0] == '\"':  # check for quoted arg
                 second_quote = args.find('\"', 1)
                 att_name = args[1:second_quote]
                 args = args[second_quote + 1:]
@@ -302,7 +302,7 @@ class HBNBCommand(cmd.Cmd):
             args = args.partition(' ')
 
             # if att_name was not quoted arg
-            if not att_name and args[0] is not ' ':
+            if not att_name and args[0] != ' ':
                 att_name = args[0]
             # check for quoted val arg
             if args[2] and args[2][0] == '\"':
